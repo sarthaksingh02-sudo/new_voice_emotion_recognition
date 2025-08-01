@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Voice Emotion Recognition - Therapeutic AI Assistant</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Mental Health Themed Colors */
+            --primary-calm: #06b6d4;
+            --primary-healing: #10b981;
+            --primary-support: #8b5cf6;
+            --primary-gradient: linear-gradient(135deg, #06b6d4 0%, #10b981 50%, #8b5cf6 100%);
+            --therapeutic-blue: #0ea5e9;
+            --healing-green: #22c55e;
+            --peaceful-purple: #a855f7;
+            --warm-orange: #fb923c;
+            --gentle-pink: #f472b6;
+            
+            /* Background Gradients */
+            --background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 50%, #faf5ff 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --hero-bg: linear-gradient(135deg, #e0f2fe 0%, #dcfce7 50%, #f3e8ff 100%);
+            
+            /* Text Colors */
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-therapeutic: #0f766e;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-therapeutic: 0 8px 32px rgba(6, 182, 212, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Background Gradients */
+        .background-gradients {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -5;
+            pointer-events: none;
+        }
+
+        .bg-gradient-1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+            animation: floatGradient 20s ease-in-out infinite;
+        }
+
+        .bg-gradient-2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%);
+            animation: floatGradient 25s ease-in-out infinite reverse;
+        }
+
+        .bg-gradient-3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            animation: floatGradient 30s ease-in-out infinite;
+        }
+
+        @keyframes floatGradient {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        /* IMPROVED: SOOTHING WAVE PATTERNS - MORE VISIBLE */
+        .soothing-waves {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -4;
+            pointer-events: none;
+            opacity: 1;
+        }
+
+        .wave-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(6, 182, 212, 0.08) 25%, 
+                transparent 50%, 
+                rgba(16, 185, 129, 0.08) 75%, 
+                transparent 100%);
+            animation: gentleWave 18s ease-in-out infinite;
+        }
+
+        .wave-layer:nth-child(2) {
+            background: linear-gradient(-45deg, 
+                transparent 0%, 
+                rgba(139, 92, 246, 0.06) 25%, 
+                transparent 50%, 
+                rgba(251, 146, 60, 0.06) 75%, 
+                transparent 100%);
+            animation: gentleWave 22s ease-in-out infinite reverse;
+        }
+
+        .wave-layer:nth-child(3) {
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(34, 197, 94, 0.05) 50%, 
+                transparent 100%);
+            animation: gentleWave 26s ease-in-out infinite;
+            animation-delay: -5s;
+        }
+
+        @keyframes gentleWave {
+            0%, 100% { 
+                transform: translateX(0px) translateY(0px) rotate(0deg); 
+                opacity: 0.6; 
+            }
+            25% { 
+                transform: translateX(-30px) translateY(-15px) rotate(2deg); 
+                opacity: 0.9; 
+            }
+            50% { 
+                transform: translateX(30px) translateY(-25px) rotate(-2deg); 
+                opacity: 0.7; 
+            }
+            75% { 
+                transform: translateX(-15px) translateY(-10px) rotate(1deg); 
+                opacity: 1; 
+            }
+        }
+
+        /* IMPROVED: FLOATING ORBS - MORE VISIBLE */
+        .floating-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(6, 182, 212, 0.2));
+            backdrop-filter: blur(2px);
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+            animation: floatOrb 15s ease-in-out infinite;
+        }
+
+        .orb:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 15%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(6, 182, 212, 0.15));
+            box-shadow: 0 4px 25px rgba(6, 182, 212, 0.4);
+            animation-delay: 0s;
+            animation-duration: 20s;
+        }
+
+        .orb:nth-child(2) {
+            width: 90px;
+            height: 90px;
+            top: 60%;
+            right: 20%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(16, 185, 129, 0.15));
+            box-shadow: 0 4px 25px rgba(16, 185, 129, 0.4);
+            animation-delay: -3s;
+            animation-duration: 18s;
+        }
+
+        .orb:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 10%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), rgba(139, 92, 246, 0.12));
+            box-shadow: 0 4px 30px rgba(139, 92, 246, 0.3);
+            animation-delay: -7s;
+            animation-duration: 25s;
+        }
+
+        .orb:nth-child(4) {
+            width: 70px;
+            height: 70px;
+            top: 30%;
+            right: 40%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(251, 146, 60, 0.12));
+            box-shadow: 0 4px 20px rgba(251, 146, 60, 0.3);
+            animation-delay: -10s;
+            animation-duration: 22s;
+        }
+
+        .orb:nth-child(5) {
+            width: 100px;
+            height: 100px;
+            bottom: 40%;
+            right: 15%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(244, 114, 182, 0.12));
+            box-shadow: 0 4px 25px rgba(244, 114, 182, 0.3);
+            animation-delay: -15s;
+            animation-duration: 19s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) scale(1); 
+                opacity: 0.6; 
+            }
+            25% { 
+                transform: translateY(-40px) translateX(30px) scale(1.1); 
+                opacity: 0.9; 
+            }
+            50% { 
+                transform: translateY(-60px) translateX(-20px) scale(0.9); 
+                opacity: 0.7; 
+            }
+            75% { 
+                transform: translateY(-30px) translateX(-40px) scale(1.05); 
+                opacity: 1; 
+            }
+        }
+
+        /* IMPROVED: BREATHING PULSE EFFECT - MORE VISIBLE */
+        .breathing-aura {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: breathe 8s ease-in-out infinite;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        @keyframes breathe {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1); 
+                opacity: 0.5; 
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.6); 
+                opacity: 0.2; 
+            }
+        }
+
+        /* IMPROVED: GENTLE SHIMMER EFFECT - MORE VISIBLE */
+        .shimmer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.08) 25%, 
+                transparent 50%, 
+                rgba(255, 255, 255, 0.08) 75%, 
+                transparent 100%);
+            animation: shimmer 12s ease-in-out infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%); opacity: 0.3; }
+            50% { transform: translateX(100%); opacity: 0.7; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 0 40px;
+            background: var(--hero-bg);
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-therapeutic);
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="mental-health-pattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="%2306b6d4" opacity="0.1"/><circle cx="18" cy="18" r="1" fill="%2310b981" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23mental-health-pattern)"/></svg>');
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-therapeutic);
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 500;
+        }
+
+        .header .mental-health-note {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 20px;
+            border: 2px solid rgba(6, 182, 212, 0.2);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .stat {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: var(--shadow-therapeutic);
+            min-width: 140px;
+            border: 2px solid rgba(6, 182, 212, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow-therapeutic);
+            border: 2px solid rgba(16, 185, 129, 0.1);
+            z-index: 10;
+            position: relative;
+        }
+
+        .upload-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .upload-header h2 {
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--therapeutic-blue), var(--healing-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .upload-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .upload-header .therapy-message {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(16, 185, 129, 0.1));
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--text-therapeutic);
+        }
+
+        .upload-area {
+            border: 3px dashed var(--therapeutic-blue);
+            border-radius: 25px;
+            padding: 80px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(16, 185, 129, 0.05));
+        }
+
+        .upload-area:hover {
+            border-color: var(--healing-green);
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(16, 185, 129, 0.1));
+            transform: translateY(-3px);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--peaceful-purple);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+            transform: scale(1.02);
+        }
+
+        .upload-area i {
+            font-size: 4rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .upload-area h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .upload-area p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        /* Buttons */
+        .upload-controls {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 18px 35px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Results Section */
+        .results-section {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 50px;
+            margin-top: 50px;
+            box-shadow: var(--shadow-therapeutic);
+            border: 2px solid rgba(139, 92, 246, 0.1);
+            display: none;
+            z-index: 10;
+            position: relative;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .results-header h2 {
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .confidence-score {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(16, 185, 129, 0.1));
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            border: 2px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .confidence-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .confidence-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(6, 182, 212, 0.1);
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .emotion-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .emotion-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .emotion-percentage {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .emotion-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Mental Health Support Message */
+        .support-message {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+            border: 2px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .support-message h3 {
+            color: var(--text-therapeutic);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .support-message p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .loading-content {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--therapeutic-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 30px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .loading-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* MULTIPLE ROBOTS STORY SECTION */
+        .robots-story-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            z-index: 100;
+            pointer-events: none;
+            background: linear-gradient(to top, rgba(6, 182, 212, 0.05), transparent);
+        }
+
+        /* Analyzer Robot */
+        .robot-analyzer {
+            position: absolute;
+            bottom: 40px;
+            left: 10%;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--therapeutic-blue), var(--healing-green));
+            border-radius: 15px;
+            animation: analyzeMotion 3s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .robot-analyzer::before {
+            content: '🤖';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            animation: thinkingGlow 2s ease-in-out infinite;
+        }
+
+        .robot-analyzer::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            width: 40px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            animation: processingBar 2s ease-in-out infinite;
+        }
+
+        /* Supporter Robot */
+        .robot-supporter {
+            position: absolute;
+            bottom: 40px;
+            right: 10%;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--healing-green), var(--peaceful-purple));
+            border-radius: 15px;
+            animation: supportMotion 4s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .robot-supporter::before {
+            content: '💚';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        /* Emotion Expresser Robots */
+        .robot-expresser {
+            position: absolute;
+            bottom: 20px;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--warm-orange), var(--gentle-pink));
+            border-radius: 12px;
+            animation: expressEmotion 2s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(251, 146, 60, 0.3);
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .robot-expresser::before {
+            content: '😊';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            animation: emotionPulse 1s ease-in-out infinite;
+        }
+
+        /* Story Robots that appear during analysis */
+        .story-robots {
+            position: absolute;
+            bottom: 60px;
+            left: 30%;
+            width: 40%;
+            height: 80px;
+            display: none;
+        }
+
+        .story-robot {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            animation: storyAnimation 3s ease-in-out infinite;
+        }
+
+        .story-robot-1 {
+            left: 0;
+            background: linear-gradient(135deg, #ef4444, #f59e0b);
+            animation-delay: 0s;
+        }
+
+        .story-robot-2 {
+            left: 25%;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            animation-delay: 0.5s;
+        }
+
+        .story-robot-3 {
+            left: 50%;
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            animation-delay: 1s;
+        }
+
+        .story-robot-4 {
+            left: 75%;
+            background: linear-gradient(135deg, #8b5cf6, #f472b6);
+            animation-delay: 1.5s;
+        }
+
+        /* Robot Animations */
+        @keyframes analyzeMotion {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        @keyframes supportMotion {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-5px) scale(1.1); }
+        }
+
+        @keyframes expressEmotion {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        @keyframes storyAnimation {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+            50% { transform: translateY(-15px) rotate(10deg); opacity: 1; }
+        }
+
+        @keyframes thinkingGlow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0.5)); }
+            50% { filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.8)); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        @keyframes emotionPulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.3); }
+        }
+
+        @keyframes processingBar {
+            0% { width: 10px; opacity: 0.5; }
+            50% { width: 40px; opacity: 1; }
+            100% { width: 10px; opacity: 0.5; }
+        }
+
+        /* Floating Therapeutic Particles */
+        .therapeutic-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .particle-therapeutic {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--therapeutic-blue);
+            border-radius: 50%;
+            animation: floatTherapeutic 15s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+
+        .particle-therapeutic:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+            background: var(--therapeutic-blue);
+        }
+
+        .particle-therapeutic:nth-child(2) {
+            left: 30%;
+            animation-delay: 2s;
+            background: var(--healing-green);
+        }
+
+        .particle-therapeutic:nth-child(3) {
+            left: 50%;
+            animation-delay: 4s;
+            background: var(--peaceful-purple);
+        }
+
+        .particle-therapeutic:nth-child(4) {
+            left: 70%;
+            animation-delay: 6s;
+            background: var(--warm-orange);
+        }
+
+        .particle-therapeutic:nth-child(5) {
+            left: 90%;
+            animation-delay: 8s;
+            background: var(--gentle-pink);
+        }
+
+        @keyframes floatTherapeutic {
+            0% {
+                bottom: -10px;
+                opacity: 0;
+                transform: translateX(0px);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                bottom: 100vh;
+                opacity: 0;
+                transform: translateX(50px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+            
+            .upload-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .upload-section,
+            .results-section {
+                padding: 30px;
+            }
+            
+            .robots-story-container {
+                height: 120px;
+            }
+            
+            .robot-analyzer,
+            .robot-supporter {
+                width: 40px;
+                height: 40px;
+            }
+
+            .orb {
+                opacity: 0.7;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Emotion-specific robot expressions */
+        .robot-happy {
+            animation: happyBounce 1s ease-in-out infinite;
+        }
+
+        .robot-sad {
+            animation: sadSway 2s ease-in-out infinite;
+        }
+
+        .robot-angry {
+            animation: angryShake 0.5s ease-in-out infinite;
+        }
+
+        .robot-calm {
+            animation: calmFloat 3s ease-in-out infinite;
+        }
+
+        .robot-surprised {
+            animation: surpriseJump 0.8s ease-in-out infinite;
+        }
+
+        .robot-fearful {
+            animation: fearfulTremble 0.3s ease-in-out infinite;
+        }
+
+        .robot-neutral {
+            animation: neutralSway 4s ease-in-out infinite;
+        }
+
+        .robot-disgust {
+            animation: disgustRecoil 1.5s ease-in-out infinite;
+        }
+
+        @keyframes happyBounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes sadSway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-5deg); }
+        }
+
+        @keyframes angryShake {
+            0%, 100% { transform: translateX(0px); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        @keyframes calmFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes surpriseJump {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-25px) scale(1.2); }
+        }
+
+        @keyframes fearfulTremble {
+            0%, 100% { transform: translateX(0px) translateY(0px); }
+            25% { transform: translateX(-2px) translateY(-2px); }
+            50% { transform: translateX(2px) translateY(2px); }
+            75% { transform: translateX(-2px) translateY(2px); }
+        }
+
+        @keyframes neutralSway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        @keyframes disgustRecoil {
+            0%, 100% { transform: translateX(0px); }
+            50% { transform: translateX(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Background Gradients -->
+    <div class="background-gradients">
+        <div class="bg-gradient-1"></div>
+        <div class="bg-gradient-2"></div>
+        <div class="bg-gradient-3"></div>
+    </div>
+
+    <!-- Soothing Wave Patterns -->
+    <div class="soothing-waves">
+        <div class="wave-layer"></div>
+        <div class="wave-layer"></div>
+        <div class="wave-layer"></div>
+    </div>
+
+    <!-- Floating Orbs -->
+    <div class="floating-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Breathing Aura -->
+    <div class="breathing-aura"></div>
+
+    <!-- Gentle Shimmer -->
+    <div class="shimmer-overlay"></div>
+
+    <!-- Therapeutic Particles -->
+    <div class="therapeutic-particles">
+        <div class="particle-therapeutic"></div>
+        <div class="particle-therapeutic"></div>
+        <div class="particle-therapeutic"></div>
+        <div class="particle-therapeutic"></div>
+        <div class="particle-therapeutic"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-heart"></i> Mental Health Voice Analysis</h1>
+            <p class="subtitle">AI-Powered Emotional Wellness & Therapeutic Voice Recognition</p>
+            <div class="mental-health-note">
+                <i class="fas fa-shield-alt"></i> Safe, confidential, and supportive emotional analysis
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-number">8</span>
+                <span class="stat-label">Emotional States</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">92%</span>
+                <span class="stat-label">Therapeutic Accuracy</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Support Available</span>
+            </div>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <div class="upload-header">
+                <h2>Share Your Voice for Analysis</h2>
+                <p>Upload your audio file for compassionate emotional analysis</p>
+                <div class="therapy-message">
+                    <i class="fas fa-heart"></i> "Every voice deserves to be heard and understood. Your emotional journey matters."
+                </div>
+            </div>
+            
+            <div class="upload-area" id="uploadArea">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>Drop your audio file here</h3>
+                <p>or click to browse your files</p>
+                <input type="file" id="audioFile" accept=".mp3,.wav,.m4a" style="display: none;">
+            </div>
+            
+            <div class="upload-controls">
+                <button class="btn btn-primary" id="analyzeBtn" disabled>
+                    <i class="fas fa-brain"></i>
+                    Analyze My Emotions
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h2>Your Emotional Analysis Results</h2>
+                <div class="confidence-score">
+                    <span class="confidence-label">Analysis Confidence</span>
+                    <span class="confidence-value" id="confidenceValue">0%</span>
+                </div>
+            </div>
+
+            <div class="results-grid" id="resultsGrid">
+                <!-- Results will be populated here -->
+            </div>
+
+            <div class="support-message" id="supportMessage">
+                <h3><i class="fas fa-hands-helping"></i> Mental Health Support</h3>
+                <p>Remember: Your emotions are valid. If you're struggling, please reach out to a mental health professional or trusted friend.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Analyzing Your Voice...</h3>
+            <p>Our AI is carefully listening to understand your emotions</p>
+        </div>
+    </div>
+
+    <!-- Multiple Robots Story Animation -->
+    <div class="robots-story-container">
+        <!-- Main Robots -->
+        <div class="robot-analyzer" id="robotAnalyzer"></div>
+        <div class="robot-supporter" id="robotSupporter"></div>
+        <div class="robot-expresser" id="robotExpresser"></div>
+        
+        <!-- Story Robots for Analysis -->
+        <div class="story-robots" id="storyRobots">
+            <div class="story-robot story-robot-1" id="storyRobot1"></div>
+            <div class="story-robot story-robot-2" id="storyRobot2"></div>
+            <div class="story-robot story-robot-3" id="storyRobot3"></div>
+            <div class="story-robot story-robot-4" id="storyRobot4"></div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const uploadArea = document.getElementById('uploadArea');
+        const audioFileInput = document.getElementById('audioFile');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const resultsSection = document.getElementById('resultsSection');
+        const resultsGrid = document.getElementById('resultsGrid');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const confidenceValue = document.getElementById('confidenceValue');
+        const supportMessage = document.getElementById('supportMessage');
+
+        // Robot Elements
+        const robotAnalyzer = document.getElementById('robotAnalyzer');
+        const robotSupporter = document.getElementById('robotSupporter');
+        const robotExpresser = document.getElementById('robotExpresser');
+        const storyRobots = document.getElementById('storyRobots');
+
+        // Emotion data with mental health focus
+        const emotions = {
+            happy: { 
+                name: 'Happy', 
+                icon: '😊', 
+                color: '#22c55e',
+                supportMessage: 'Your joy is beautiful! Continue nurturing activities that bring you happiness.',
+                robotExpression: '😊'
+            },
+            calm: { 
+                name: 'Calm', 
+                icon: '😌', 
+                color: '#06b6d4',
+                supportMessage: 'Your peaceful state is wonderful. This calmness can be a source of strength.',
+                robotExpression: '😌'
+            },
+            sad: { 
+                name: 'Sad', 
+                icon: '😢', 
+                color: '#3b82f6',
+                supportMessage: 'It\'s okay to feel sad. Your feelings are valid. Consider reaching out to someone you trust.',
+                robotExpression: '😢'
+            },
+            angry: { 
+                name: 'Angry', 
+                icon: '😠', 
+                color: '#ef4444',
+                supportMessage: 'Anger is a natural emotion. Try taking deep breaths and consider healthy outlets.',
+                robotExpression: '😠'
+            },
+            fearful: { 
+                name: 'Fearful', 
+                icon: '😰', 
+                color: '#8b5cf6',
+                supportMessage: 'Fear is normal. You\'re brave for facing it. Consider gradual exposure and self-compassion.',
+                robotExpression: '😰'
+            },
+            surprised: { 
+                name: 'Surprised', 
+                icon: '😮', 
+                color: '#f59e0b',
+                supportMessage: 'Surprise can be exciting! Embrace new experiences while staying grounded.',
+                robotExpression: '😮'
+            },
+            neutral: { 
+                name: 'Neutral', 
+                icon: '😐', 
+                color: '#6b7280',
+                supportMessage: 'Neutral is perfectly fine. Sometimes peace comes from emotional balance.',
+                robotExpression: '😐'
+            },
+            disgust: { 
+                name: 'Disgust', 
+                icon: '🤢', 
+                color: '#84cc16',
+                supportMessage: 'Disgust helps us avoid harmful situations. Trust your instincts while staying open-minded.',
+                robotExpression: '🤢'
+            }
+        };
+
+        // File upload handling
+        uploadArea.addEventListener('click', () => audioFileInput.click());
+        uploadArea.addEventListener('dragover', handleDragOver);
+        uploadArea.addEventListener('drop', handleDrop);
+        uploadArea.addEventListener('dragleave', handleDragLeave);
+
+        audioFileInput.addEventListener('change', handleFileSelect);
+        analyzeBtn.addEventListener('click', analyzeAudio);
+
+        // Robot click interactions
+        robotAnalyzer.addEventListener('click', () => {
+            robotStoryController.startAnalysis();
+        });
+
+        robotSupporter.addEventListener('click', () => {
+            robotSupporter.style.animation = 'heartbeat 0.5s ease-in-out 3';
+        });
+
+        robotExpresser.addEventListener('click', () => {
+            robotExpresser.style.animation = 'emotionPulse 0.5s ease-in-out 3';
+        });
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileSelect({ target: { files } });
+            }
+        }
+
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (file) {
+                uploadArea.innerHTML = `
+                    <i class="fas fa-file-audio"></i>
+                    <h3>${file.name}</h3>
+                    <p>Ready to analyze (${(file.size / 1024 / 1024).toFixed(1)}MB)</p>
+                    <div style="margin-top: 15px; font-style: italic; color: #0f766e;">
+                        <i class="fas fa-heart"></i> We're here to listen and understand
+                    </div>
+                `;
+                analyzeBtn.disabled = false;
+                analyzeBtn.classList.add('fade-in-up');
+            }
+        }
+
+        function analyzeAudio() {
+            robotStoryController.startAnalysis();
+            showLoading();
+
+            const file = audioFileInput.files[0];
+            const formData = new FormData();
+            formData.append("file", file);
+
+            fetch("http://localhost:5000/analyze", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(results => {
+                displayResults(results);
+                hideLoading();
+                const primaryEmotion = Object.keys(results).reduce((a, b) =>
+                    results[a] > results[b] ? a : b
+                );
+                robotStoryController.showEmotionStory(primaryEmotion);
+            })
+            .catch(err => {
+                console.error(err);
+                hideLoading();
+                alert("An error occurred during emotion analysis.");
+            });
+        }
+
+        function showLoading() {
+            loadingOverlay.style.display = 'flex';
+        }
+
+        function hideLoading() {
+            loadingOverlay.style.display = 'none';
+        }
+
+        function displayResults(results) {
+            // Find primary emotion
+            const primaryEmotion = Object.keys(results).reduce((a, b) => 
+                results[a] > results[b] ? a : b
+            );
+
+            // Update confidence score
+            const confidence = Math.max(...Object.values(results));
+            confidenceValue.textContent = `${confidence}%`;
+
+            // Update support message based on primary emotion
+            const emotionData = emotions[primaryEmotion];
+            supportMessage.innerHTML = `
+                <h3><i class="fas fa-hands-helping"></i> Personalized Support Message</h3>
+                <p><strong>${emotionData.supportMessage}</strong></p>
+                <p style="margin-top: 15px;">Remember: You're not alone. Professional support is available if you need it.</p>
+            `;
+
+            // Create emotion cards
+            resultsGrid.innerHTML = '';
+            Object.entries(results)
+                .sort(([,a], [,b]) => b - a)
+                .forEach(([emotion, percentage]) => {
+                    const emotionData = emotions[emotion];
+                    const card = document.createElement('div');
+                    card.className = 'result-card fade-in-up';
+                    card.style.borderColor = emotionData.color + '40';
+                    card.innerHTML = `
+                        <div class="emotion-icon">${emotionData.icon}</div>
+                        <div class="emotion-name">${emotionData.name}</div>
+                        <div class="emotion-percentage" style="color: ${emotionData.color};">${percentage}%</div>
+                        <div class="emotion-description">
+                            ${emotion === primaryEmotion ? 'Primary emotion detected' : 'Supporting emotion present'}
+                        </div>
+                    `;
+                    resultsGrid.appendChild(card);
+                });
+
+            // Show results section
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ROBOT STORY CONTROLLER
+        class RobotStoryController {
+            constructor() {
+                this.isAnalyzing = false;
+                this.currentEmotion = null;
+                this.initializeRobots();
+            }
+
+            initializeRobots() {
+                // Set initial robot expressions
+                robotAnalyzer.innerHTML = `
+                    <div style="position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 1.8rem;">🤖</div>
+                    <div style="position: absolute; top: 5px; left: 50%; transform: translateX(-50%); font-size: 0.8rem; color: white;">AI</div>
+                `;
+                
+                robotSupporter.innerHTML = `
+                    <div style="position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 1.8rem;">💚</div>
+                    <div style="position: absolute; top: 5px; left: 50%; transform: translateX(-50%); font-size: 0.8rem; color: white;">CARE</div>
+                `;
+                
+                robotExpresser.innerHTML = `
+                    <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1.5rem;">😊</div>
+                    <div style="position: absolute; top: 5px; left: 50%; transform: translateX(-50%); font-size: 0.7rem; color: white;">FEEL</div>
+                `;
+            }
+
+            startAnalysis() {
+                this.isAnalyzing = true;
+                
+                // Show story robots
+                storyRobots.style.display = 'block';
+                
+                // Animate analyzer robot
+                robotAnalyzer.style.animation = 'analyzeMotion 1s ease-in-out infinite';
+                robotAnalyzer.style.filter = 'drop-shadow(0 0 15px #06b6d4)';
+                
+                // Update analyzer expression
+                robotAnalyzer.querySelector('div').innerHTML = '🧠';
+                
+                // Animate supporter robot
+                robotSupporter.style.animation = 'supportMotion 1.5s ease-in-out infinite';
+                robotSupporter.style.filter = 'drop-shadow(0 0 15px #10b981)';
+            }
+
+            showEmotionStory(emotion) {
+                this.currentEmotion = emotion;
+                const emotionData = emotions[emotion];
+                
+                // Update expresser robot with detected emotion
+                robotExpresser.querySelector('div').innerHTML = emotionData.robotExpression;
+                robotExpresser.className = `robot-expresser robot-${emotion}`;
+                robotExpresser.style.filter = `drop-shadow(0 0 20px ${emotionData.color})`;
+                
+                // Update analyzer robot
+                robotAnalyzer.querySelector('div').innerHTML = '✅';
+                robotAnalyzer.style.filter = `drop-shadow(0 0 15px ${emotionData.color})`;
+                
+                // Update supporter robot based on emotion
+                this.updateSupporterExpression(emotion);
+                
+                // Animate story robots with emotion
+                this.animateStoryRobots(emotion);
+                
+                // Reset after story
+                setTimeout(() => {
+                    this.resetRobots();
+                }, 5000);
+            }
+
+            updateSupporterExpression(emotion) {
+                const supportExpressions = {
+                    happy: '🎉',
+                    calm: '🕊️',
+                    sad: '🤗',
+                    angry: '🛡️',
+                    fearful: '💪',
+                    surprised: '👀',
+                    neutral: '🤲',
+                    disgust: '🌟'
+                };
+                
+                robotSupporter.querySelector('div').innerHTML = supportExpressions[emotion];
+                robotSupporter.style.filter = `drop-shadow(0 0 15px ${emotions[emotion].color})`;
+            }
+
+            animateStoryRobots(emotion) {
+                const storyRobotElements = document.querySelectorAll('.story-robot');
+                storyRobotElements.forEach((robot, index) => {
+                    robot.style.filter = `drop-shadow(0 0 10px ${emotions[emotion].color})`;
+                    robot.innerHTML = `<div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 1.2rem;">${emotions[emotion].icon}</div>`;
+                });
+            }
+
+            resetRobots() {
+                this.isAnalyzing = false;
+                
+                // Hide story robots
+                storyRobots.style.display = 'none';
+                
+                // Reset main robots
+                robotAnalyzer.style.animation = 'analyzeMotion 3s ease-in-out infinite';
+                robotAnalyzer.style.filter = 'none';
+                robotSupporter.style.animation = 'supportMotion 4s ease-in-out infinite';
+                robotSupporter.style.filter = 'none';
+                robotExpresser.style.animation = 'expressEmotion 2s ease-in-out infinite';
+                robotExpresser.style.filter = 'none';
+                
+                // Reset expressions
+                this.initializeRobots();
+            }
+        }
+
+        // Initialize robot story controller
+        const robotStoryController = new RobotStoryController();
+
+        // Mental health resources
+        const mentalHealthResources = {
+            crisis: "988 Suicide & Crisis Lifeline",
+            text: "Text HOME to 741741",
+            chat: "Crisis Text Line available 24/7"
+        };
+
+        // Add mental health resources to support message
+        function addMentalHealthResources() {
+            const resourcesDiv = document.createElement('div');
+            resourcesDiv.innerHTML = `
+                <div style="margin-top: 20px; padding: 15px; background: rgba(239, 68, 68, 0.1); border-radius: 15px; border: 2px solid rgba(239, 68, 68, 0.2);">
+                    <h4 style="color: #ef4444; margin-bottom: 10px;"><i class="fas fa-phone"></i> Crisis Support</h4>
+                    <p style="margin: 5px 0;">📞 ${mentalHealthResources.crisis}</p>
+                    <p style="margin: 5px 0;">💬 ${mentalHealthResources.text}</p>
+                    <p style="margin: 5px 0;">🌐 ${mentalHealthResources.chat}</p>
+                </div>
+            `;
+            supportMessage.appendChild(resourcesDiv);
+        }
+
+        // Initialize mental health resources
+        setTimeout(() => {
+            if (document.getElementById('supportMessage')) {
+                addMentalHealthResources();
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mental Health Voice Emotion Recognition</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(to bottom, #f0f8ff, #fef6f9); margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: auto; padding: 2rem; text-align: center; }
+        .upload-box { border: 2px dashed #ccc; padding: 2rem; background: white; border-radius: 10px; margin-bottom: 2rem; }
+        .emotion-results { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2rem; }
+        .emotion-card { background: #fff; border-radius: 10px; padding: 1rem 2rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 150px; }
+        .emotion-card h3 { margin: 0.5rem 0; font-size: 1.2rem; }
+        .robot { font-size: 3rem; animation: bounce 2s infinite; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎧 Mental Health Voice Emotion Recognition</h1>
+    <div class="upload-box">
+        <input type="file" id="audioFileInput" accept=".wav" />
+        <button onclick="analyzeAudio()">Analyze My Emotions</button>
+    </div>
+
+    <div id="loading" style="display:none;">⏳ Analyzing your voice...</div>
+
+    <div id="robots" style="display:none;">
+        <div class="robot" id="robotExpression">🤖</div>
+        <p id="supportMessage"></p>
+    </div>
+
+    <div class="emotion-results" id="emotionResults"></div>
+</div>
+
+<script>
+    const audioFileInput = document.getElementById("audioFileInput");
+    const loading = document.getElementById("loading");
+    const emotionResults = document.getElementById("emotionResults");
+    const robots = document.getElementById("robots");
+    const robotExpression = document.getElementById("robotExpression");
+    const supportMessage = document.getElementById("supportMessage");
+
+    const emotionFaces = {
+        happy: "😊",
+        sad: "😢",
+        angry: "😠",
+        fearful: "😨",
+        surprised: "😲",
+        calm: "😌",
+        disgust: "🤢",
+        neutral: "😐"
+    };
+
+    const supportMessages = {
+        happy: "Your joy is inspiring. Keep shining!",
+        sad: "It's okay to feel sad. You're not alone.",
+        angry: "Take a breath. You're doing your best.",
+        fearful: "Courage starts with showing up.",
+        surprised: "New things can be exciting. Embrace them!",
+        calm: "Peace is powerful. Stay grounded.",
+        disgust: "Your feelings are valid. Take care of yourself.",
+        neutral: "Balance is beautiful. Stay steady."
+    };
+
+    function showLoading() { loading.style.display = "block"; }
+    function hideLoading() { loading.style.display = "none"; }
+
+    function displayResults(data) {
+        emotionResults.innerHTML = "";
+        robots.style.display = "block";
+
+        const sorted = Object.entries(data).sort((a, b) => b[1] - a[1]);
+        const primaryEmotion = sorted[0][0];
+
+        robotExpression.textContent = emotionFaces[primaryEmotion] || "🤖";
+        supportMessage.textContent = supportMessages[primaryEmotion] || "";
+
+        for (const [emotion, value] of sorted) {
+            const card = document.createElement("div");
+            card.className = "emotion-card";
+            card.innerHTML = `<h3>${emotionFaces[emotion] || ""} ${emotion}</h3><p>${value.toFixed(2)}%</p>`;
+            emotionResults.appendChild(card);
+        }
+    }
+
+    function analyzeAudio() {
+        if (!audioFileInput.files.length) {
+            alert("Please select an audio file first.");
+            return;
+        }
+
+        showLoading();
+        robots.style.display = "none";
+        emotionResults.innerHTML = "";
+
+        const formData = new FormData();
+        formData.append("file", audioFileInput.files[0]);
+
+        fetch("http://localhost:5000/analyze", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            hideLoading();
+            displayResults(data);
+        })
+        .catch(err => {
+            console.error(err);
+            hideLoading();
+            alert("An error occurred during emotion analysis.");
+        });
+    }
+</script>
+</body>
+</html>
